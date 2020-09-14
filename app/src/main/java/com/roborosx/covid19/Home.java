@@ -52,6 +52,10 @@ public class Home extends Fragment {
         view = inflater.inflate(R.layout.home,container,false);
         values=new ArrayList<>();
         test=new ArrayList<>();
+        total=view.findViewById(R.id.cases);
+        male=view.findViewById(R.id.male);
+        female=view.findViewById(R.id.female);
+        unknown=view.findViewById(R.id.unknown);
         total.setText("Total Cases: 27891");
         male.setText("Total Cases(Male): 15232 (raw data)");
         female.setText("Total Cases(Female): 14543 (raw data)");
