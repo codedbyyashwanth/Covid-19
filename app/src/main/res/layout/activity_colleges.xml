@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".Colleges">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:id="@+id/back"
+            android:onClick="Back"
+            android:src="@drawable/back"
+            android:layout_marginTop="18dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorPrimary"
+            android:textStyle="bold"
+            android:textSize="25sp"
+            android:layout_marginTop="15dp"
+            android:layout_marginStart="5dp"
+            android:layout_toRightOf="@id/back"
+            android:id="@+id/head"
+            android:text="Medical Colleges and beds"
+            />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="5dp"
+            android:text="State: "
+            android:textSize="20sp"
+            android:id="@+id/state"
+            android:textStyle="bold"
+            />
+
+        <TextView
+            android:id="@+id/ownership"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="16dp"
+            android:layout_below="@id/stateSpin"
+            android:text="OwnerShip:"
+            android:textSize="20sp"
+            android:textStyle="bold"
+             />
+
+        <Spinner
+            android:id="@+id/stateSpin"
+            android:layout_width="200dp"
+            android:layout_toEndOf="@id/state"
+            android:layout_height="40dp"
+            android:layout_marginStart="10dp"
+            />
+
+
+        <Spinner
+            android:id="@+id/ownershipSpin"
+            android:layout_width="200dp"
+            android:layout_height="40dp"
+            android:layout_below="@id/stateSpin"
+            android:layout_toEndOf="@id/ownership"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="5dp"
+           />
+
+        <Button
+            android:layout_width="100dp"
+            android:layout_height="30dp"
+            android:layout_below="@id/ownershipSpin"
+            android:layout_marginStart="15dp"
+            android:background="@drawable/button_background"
+            android:layout_marginBottom="10dp"
+            android:text="Search"
+            android:onClick="Search"
+            android:textStyle="bold"
+            android:textColor="@android:color/white"
+            android:textAllCaps="false"/>
+
+        <Button
+            android:layout_width="100dp"
+            android:layout_height="30dp"
+            android:layout_below="@id/ownershipSpin"
+            android:layout_marginEnd="15dp"
+            android:layout_alignParentEnd="true"
+            android:background="@drawable/button_background"
+            android:layout_marginBottom="10dp"
+            android:text="Clear"
+            android:onClick="Clear"
+            android:textStyle="bold"
+            android:textColor="@android:color/white"
+            android:textAllCaps="false"/>
+
+    </RelativeLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="10dp"
+        android:id="@+id/recyclerView"
+        android:layout_marginEnd="10dp"
+        android:layout_height="match_parent">
+
+    </androidx.recyclerview.widget.RecyclerView>
+
+</LinearLayout>

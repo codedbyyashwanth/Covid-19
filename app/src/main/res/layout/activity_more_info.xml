@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MoreInfo">
+
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+   <LinearLayout
+       android:layout_width="match_parent"
+       android:orientation="horizontal"
+       android:gravity="center"
+       android:layout_marginTop="15dp"
+       android:layout_marginStart="10dp"
+       android:id="@+id/linearLayout"
+       android:layout_height="wrap_content">
+
+       <ImageView
+           android:layout_width="30dp"
+           android:layout_height="match_parent"
+           android:background="@drawable/image_button"
+           android:src="@drawable/back"
+           android:onClick="Back"
+           android:id="@+id/back"/>
+
+
+       <TextView
+           android:layout_width="match_parent"
+           android:layout_height="match_parent"
+           android:textStyle="bold"
+           android:layout_marginStart="10dp"
+           android:textColor="@color/colorPrimary"
+           android:text=" Helpline Details"
+           android:textSize="25sp"
+           android:id="@+id/head"/>
+
+   </LinearLayout>
+
+   <ImageView
+       android:layout_width="match_parent"
+       android:layout_height="500dp"
+       android:src="@drawable/corona_2"
+       android:layout_below="@id/linearLayout"
+       android:layout_marginTop="10dp"
+       android:id="@+id/imageView"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_below="@id/imageView"
+        android:orientation="vertical"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Contact Details"
+            android:textSize="25sp"
+            android:textStyle="bold"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Contact No: +91-11-23978046"
+            android:textSize="20sp"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Toll-Free No: 1075"
+            android:layout_marginTop="10dp"
+            android:textSize="20sp"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"/>
+
+        <Button
+            android:id="@+id/mail"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginStart="40dp"
+            android:layout_marginEnd="40dp"
+            android:background="@drawable/button_background"
+            android:text="Send Mail"
+            android:onClick="Mail"
+            android:textAllCaps="false"
+            android:textStyle="bold"
+            android:textColor="@android:color/white"
+            android:layout_marginTop="20dp"
+            android:textSize="20sp"/>
+
+        <Button
+            android:id="@+id/twitter"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginStart="40dp"
+            android:layout_marginEnd="40dp"
+            android:background="@drawable/button_background"
+            android:text="Twitter"
+            android:onClick="Twitter"
+            android:textAllCaps="false"
+            android:textStyle="bold"
+            android:textColor="@android:color/white"
+            android:layout_marginTop="20dp"
+            android:textSize="20sp"/>
+
+        <Button
+            android:id="@+id/facebook"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginStart="40dp"
+            android:layout_marginEnd="40dp"
+            android:background="@drawable/button_background"
+            android:text="Facebook"
+            android:onClick="Facebook"
+            android:textAllCaps="false"
+            android:textStyle="bold"
+            android:textColor="@android:color/white"
+            android:layout_marginTop="20dp"
+            android:textSize="20sp"/>
+
+        <Button
+            android:id="@+id/website"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginStart="40dp"
+            android:layout_marginEnd="40dp"
+            android:background="@drawable/button_background"
+            android:text="Visit Website"
+            android:onClick="Website"
+            android:textAllCaps="false"
+            android:textStyle="bold"
+            android:textColor="@android:color/white"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:textSize="20sp"/>
+
+
+    </LinearLayout>
+
+</RelativeLayout>
+
+</ScrollView>
