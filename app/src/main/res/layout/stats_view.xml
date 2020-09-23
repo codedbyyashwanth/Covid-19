@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="5dp"
+    android:elevation="1dp"
+    android:layout_marginBottom="10dp"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:text="State"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="15dp"
+            android:id="@+id/SState"/>
+
+        <GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/SState"
+            android:layout_marginTop="15dp"
+            android:rowCount="2"
+            android:layout_marginBottom="20dp"
+            android:columnCount="3">
+
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text="0"
+                android:textColor="@color/colorPrimary"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:id="@+id/confirmed"
+                android:layout_columnWeight="1"
+                android:layout_rowWeight="1"
+                />
+
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text="0"
+                android:textColor="@color/colorPrimary"
+                android:textSize="18sp"
+                android:id="@+id/discharged"
+                android:gravity="center"
+                android:textStyle="bold"
+                android:layout_columnWeight="1"
+                android:layout_rowWeight="1"
+                />
+
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text="0"
+                android:textColor="@color/colorPrimary"
+                android:id="@+id/deaths"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:layout_columnWeight="1"
+                android:gravity="center"
+                android:layout_rowWeight="1"
+                />
+
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:gravity="center"
+                android:text="Confirmed"
+                android:textSize="18sp"
+                android:layout_columnWeight="1"
+                android:layout_rowWeight="1"
+                />
+
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text="Discharged"
+                android:textSize="18sp"
+                android:layout_columnWeight="1"
+                android:gravity="center"
+                android:layout_rowWeight="1"
+                />
+
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text="Deaths"
+                android:gravity="center"
+                android:textSize="18sp"
+                android:layout_columnWeight="1"
+                android:layout_rowWeight="1"
+                />
+
+        </GridLayout>
+
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>
