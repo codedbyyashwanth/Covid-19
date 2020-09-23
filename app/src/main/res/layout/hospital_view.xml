@@ -6,77 +6,138 @@
     android:layout_marginBottom="10dp"
     android:layout_height="wrap_content">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/HState"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="10dp"
-        android:text="State"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <GridLayout
-        android:id="@+id/gridLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:columnCount="2"
-        android:rowCount="1"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/HState">
-
         <TextView
-            android:id="@+id/SHospital"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_columnWeight="1"
+            android:text="State"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_marginTop="10dp"
             android:layout_marginStart="10dp"
-            android:text="Hospitals\nRural:0\nUrban:0"
-            android:textColor="#494949"
-            android:textSize="16sp"
-            android:textStyle="bold" />
+            android:id="@+id/HState"/>
 
         <TextView
-            android:id="@+id/SBed"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_columnWeight="1"
-            android:layout_marginStart="5dp"
+            android:layout_alignParentStart="true"
+            android:layout_below="@id/HState"
+            android:layout_marginTop="15dp"
+            android:text="Hospital"
+            android:layout_marginStart="10dp"
+            android:id="@+id/t1"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_below="@id/t1"
+            android:text="Rural: "
+            android:layout_marginStart="10dp"
+            android:id="@+id/t2"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_below="@id/t2"
+            android:text="Urban: "
+            android:layout_marginStart="10dp"
+            android:id="@+id/t3"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/t1"
+            android:layout_toEndOf="@id/t2"
+            android:textStyle="bold"
+            android:layout_marginTop="1dp"
+            android:text="0"
+            android:textColor="@color/colorPrimary"
+            android:id="@+id/SHospital1"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/t2"
+            android:layout_toEndOf="@id/t3"
+            android:textStyle="bold"
+            android:layout_marginTop="1dp"
+            android:text="0"
+            android:textColor="@color/colorPrimary"
+            android:id="@+id/SHospital2"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_below="@id/HState"
+            android:layout_marginTop="15dp"
+            android:text="Beds"
             android:layout_marginEnd="10dp"
-            android:gravity="end"
-            android:text="Beds\nRural:0\nUrban:0"
-            android:textColor="#494949"
-            android:textSize="16sp"
-            android:textStyle="bold" />
+            android:id="@+id/t4"/>
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/t1"
+            android:text="Rural: "
+            android:layout_toLeftOf="@+id/SBed1"
+            android:layout_marginStart="10dp"
+            android:id="@+id/t5"/>
 
-    </GridLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/t2"
+            android:text="Urban: "
+            android:layout_toStartOf="@id/SBed2"
+            android:layout_marginStart="10dp"
+            android:id="@+id/t6"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/t1"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="10dp"
+            android:textStyle="bold"
+            android:layout_marginTop="1dp"
+            android:text="0"
+            android:textColor="@color/colorPrimary"
+            android:id="@+id/SBed1"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/t2"
+            android:layout_alignParentEnd="true"
+            android:textStyle="bold"
+            android:layout_marginEnd="10dp"
+            android:layout_marginTop="1dp"
+            android:text="0"
+            android:textColor="@color/colorPrimary"
+            android:id="@+id/SBed2"/>
 
         <Button
-            android:id="@+id/BTotal"
             android:layout_width="100dp"
             android:layout_height="30dp"
-            android:layout_marginTop="15dp"
-            android:layout_marginEnd="15dp"
-            android:layout_marginBottom="10dp"
             android:background="@drawable/button_background"
+            android:textStyle="bold"
+            android:textColor="@android:color/white"
             android:text="More Details"
             android:textAllCaps="false"
-            android:textColor="@android:color/white"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/gridLayout" />
+            android:layout_below="@id/SBed2"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="15dp"
+            android:layout_marginBottom="15dp"
+            android:layout_marginTop="10dp"
+            android:id="@+id/BTotal"/>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </RelativeLayout>
 
 </androidx.cardview.widget.CardView>

@@ -18,9 +18,9 @@
     <SearchView
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:queryHint="Search Here"
+        android:queryHint="Search State"
         android:iconifiedByDefault="false"
-        android:id="@+id/search_bar"
+        android:id="@+id/searchView"
         android:layout_below="@id/head"/>
 
 
@@ -42,7 +42,7 @@
         android:layout_marginLeft="10dp"
         android:layout_marginTop="10dp"
         android:layout_marginRight="10dp"
-        android:layout_below="@id/search_bar"
+        android:layout_below="@id/searchView"
         android:layout_height="match_parent" />
 
     <ProgressBar

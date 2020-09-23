@@ -3,24 +3,11 @@ package com.roborosx.covid19;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.os.CountDownTimer;
-import android.util.Log;
 import android.view.View;
-import android.widget.Toast;
-import android.widget.VideoView;
+import android.widget.TextView;
 
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.JsonRequest;
-import com.android.volley.toolbox.Volley;
-
-import org.json.JSONException;
-import org.json.JSONObject;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -31,12 +18,21 @@ public class MainActivity extends AppCompatActivity {
 
         getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
 
-        VideoView videoView=findViewById(R.id.video);
-        videoView.setVideoURI(Uri.parse("android.resource://" + getPackageName() + "/" +
-                R.raw.video));
-        videoView.start();
 
-        new CountDownTimer(5000,1000){
+
+        TextView textView=findViewById(R.id.head);
+        TextView textView1=findViewById(R.id.text);
+        TextView roborosx=findViewById(R.id.roborosx);
+        textView1.setAlpha(0);
+        roborosx.setAlpha(0);
+        roborosx.animate().alpha(2).setStartDelay(1000);
+        textView1.animate().setStartDelay(2000);
+        textView1.animate().alpha(2).setDuration(1500);
+        textView.setAlpha(0);
+        textView.animate().alpha(0.5f).setDuration(1000);
+        textView.animate().alpha(1).setDuration(1000);
+
+        new CountDownTimer(4000,1000){
 
             @Override
             public void onTick(long millisUntilFinished) {
@@ -47,6 +43,7 @@ public class MainActivity extends AppCompatActivity {
             public void onFinish() {
                 Intent intent=new Intent(MainActivity.this,NavigationActivity.class);
                 startActivity(intent);
+                finish();
             }
         }.start();
 

@@ -8,7 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
+
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -38,8 +38,10 @@ public class HospitalAdapter extends RecyclerView.Adapter<HospitalAdapter.Hospit
     public void onBindViewHolder(@NonNull HospitalViewHolder holder, int position) {
         final HospitalInfo currentItem=arrayList.get(position);
         holder.state.setText(currentItem.getState());
-        holder.hospital.setText("Hospital\n" + "Rural: " + currentItem.getRHospital() + "\nUrban: " + currentItem.getUHospital());
-        holder.bed.setText("Beds\n" + "Rural: " + currentItem.getRBed() + "\nUrban: " + currentItem.getUBed());
+        holder.hospital1.setText("" + currentItem.getRHospital());
+        holder.hospital2.setText("" + currentItem.getUHospital());
+        holder.bed1.setText("" + currentItem.getRBed());
+        holder.bed2.setText("" + currentItem.getUBed());
         holder.BTotal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -79,14 +81,16 @@ public class HospitalAdapter extends RecyclerView.Adapter<HospitalAdapter.Hospit
     }
 
     public static class HospitalViewHolder extends RecyclerView.ViewHolder{
-        public TextView state,hospital,bed;
+        public TextView state,hospital1,hospital2,bed1,bed2;
         public Button BTotal;
         public HospitalViewHolder(@NonNull View itemView) {
             super(itemView);
 
             state=itemView.findViewById(R.id.HState);
-            hospital=itemView.findViewById(R.id.SHospital);
-            bed=itemView.findViewById(R.id.SBed);
+            hospital1=itemView.findViewById(R.id.SHospital1);
+            hospital2=itemView.findViewById(R.id.SHospital2);
+            bed1=itemView.findViewById(R.id.SBed1);
+            bed2=itemView.findViewById(R.id.SBed2);
             BTotal=itemView.findViewById(R.id.BTotal);
         }
     }

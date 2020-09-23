@@ -7,11 +7,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
 import com.android.volley.Request;
@@ -21,7 +23,6 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -31,6 +32,8 @@ public class Dashboard extends Fragment {
     String url="https://api.rootnet.in/covid19-in/hospitals/beds";
     int UBed,RBed,UHospital,RHospital;
     TextView BedText,HospitalText,TotalBeds,TotalHospitals;
+    ProgressBar progressBar;
+    CardView card1,card2;
 
     @Nullable
     @Override
@@ -68,6 +71,12 @@ public class Dashboard extends Fragment {
         HospitalText=view.findViewById(R.id.hospital);
         TotalBeds=view.findViewById(R.id.totalBeds);
         TotalHospitals=view.findViewById(R.id.totalHospitals);
+        progressBar=view.findViewById(R.id.progressBar);
+        progressBar.setVisibility(View.VISIBLE);
+        card1=view.findViewById(R.id.card);
+        card2=view.findViewById(R.id.card2);
+        card1.setVisibility(View.GONE);
+        card2.setVisibility(View.GONE);
     }
 
     public void Data(){
@@ -95,7 +104,9 @@ public class Dashboard extends Fragment {
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
-
+                        card1.setVisibility(View.VISIBLE);
+                        card2.setVisibility(View.VISIBLE);
+                        progressBar.setVisibility(View.GONE);
                     }
                 },
                 new Response.ErrorListener(){

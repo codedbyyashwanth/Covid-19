@@ -1,49 +1,56 @@
 package com.roborosx.covid19;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-import com.github.mikephil.charting.charts.LineChart;
+import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.data.Entry;
-import com.github.mikephil.charting.data.LineData;
-import com.github.mikephil.charting.data.LineDataSet;
-import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
-import com.google.android.material.snackbar.Snackbar;
+import com.github.mikephil.charting.data.PieData;
+import com.github.mikephil.charting.data.PieDataSet;
+import com.github.mikephil.charting.data.PieEntry;
+import com.github.mikephil.charting.utils.ColorTemplate;
+
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Map;
 
 
 public class Home extends Fragment {
 
     View view;
-    String url="https://firebasestorage.googleapis.com/v0/b/noteapp-e3d5c.appspot.com/o/data.json?alt=media&token=3731d429-1926-4d94-b477-bccd519050a5",date;
+    String url="https://api.rootnet.in/covid19-in/stats/latest";
     ArrayList<Entry> values;
     ArrayList<String> test;
     TextView total,male,female,unknown;
-    int Male=0,Female=0,Unknown=0;
+    int discharged=0,active=0,death=0,Total=0;
+    PieChart pieChart;
+    ArrayList<PieEntry> arrayList1;
+    ProgressBar progressBar;
+    CardView cardView;
+    Button button;
 
     @SuppressLint("SetTextI18n")
     @Nullable
@@ -52,23 +59,32 @@ public class Home extends Fragment {
         view = inflater.inflate(R.layout.home,container,false);
         values=new ArrayList<>();
         test=new ArrayList<>();
-        total=view.findViewById(R.id.cases);
-        male=view.findViewById(R.id.male);
-        female=view.findViewById(R.id.female);
-        unknown=view.findViewById(R.id.unknown);
-        total.setText("Total Cases: 27891");
-        male.setText("Total Cases(Male): 15232 (raw data)");
-        female.setText("Total Cases(Female): 14543 (raw data)");
-        unknown.setText("Total Cases(Unknown): 5003 (raw data)");
-        //Data();
-        Button button=view.findViewById(R.id.press);
+        arrayList1=new ArrayList<>();
+        loadId();
+        Data();
+        return view;
+    }
+
+    private void loadId() {
+        pieChart=view.findViewById(R.id.pieChart);
+        total=view.findViewById(R.id.c1);
+        male=view.findViewById(R.id.c2);
+        female=view.findViewById(R.id.c3);
+        unknown=view.findViewById(R.id.c4);
+        progressBar=view.findViewById(R.id.progressBar);
+        cardView=view.findViewById(R.id.card);
+        progressBar.setVisibility(View.VISIBLE);
+        pieChart.setVisibility(View.GONE);
+        cardView.setVisibility(View.GONE);
+        button=view.findViewById(R.id.more);
+        button.setVisibility(View.GONE);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getContext(), "Sorry I don't Know to Implement Line Graph with Given Data", Toast.LENGTH_SHORT).show();
+                Intent intent=new Intent(getContext(),Stats.class);
+                startActivity(intent);
             }
         });
-        return view;
     }
 
 
@@ -76,30 +92,45 @@ public class Home extends Fragment {
         final RequestQueue requestQueue = Volley.newRequestQueue(view.getContext());
 
 
-        JsonArrayRequest jsonObjectRequest = new JsonArrayRequest(
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
                 Request.Method.GET,
                 url,
                 null,
-                new Response.Listener<JSONArray>() {
+                new Response.Listener<JSONObject>() {
                     @SuppressLint("SetTextI18n")
                     @Override
-                    public void onResponse(JSONArray response) {
+                    public void onResponse(JSONObject response) {
                         try {
-                            for(int i=0;i<response.length();i++)
-                            {
-                                JSONObject jsonObject=response.getJSONObject(i);
-                                if(jsonObject.get("gender").equals("male"))
-                                    Male++;
-                                if (jsonObject.get("gender").equals("female"))
-                                    Female++;
-                                if(jsonObject.get("gender").equals(""))
-                                    Unknown++;
-
-                            }
-
+                            JSONObject object=response.getJSONObject("data");
+                            JSONObject object1 = object.getJSONObject("summary");
+                            Total = object1.getInt("confirmedCasesIndian");
+                            discharged = object1.getInt("discharged");
+                            death = object1.getInt("deaths");
+                            JSONArray object2 = object.getJSONArray("unofficial-summary");
+                            JSONObject jsonObject = object2.getJSONObject(0);
+                            active = jsonObject.getInt("active");
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
+                        pieChart.setVisibility(View.VISIBLE);
+                        cardView.setVisibility(View.VISIBLE);
+                        button.setVisibility(View.VISIBLE);
+                        total.setText("" + Total);
+                        male.setText("" + discharged);
+                        female.setText("" + active);
+                        unknown.setText("" + death);
+                        arrayList1.add(new PieEntry(discharged,"Discharged"));
+                        arrayList1.add(new PieEntry(active,"Active"));
+                        arrayList1.add(new PieEntry(death,"Death"));
+                        PieDataSet dataSet=new PieDataSet(arrayList1,"Cases In India");
+                        dataSet.setColors(ColorTemplate.COLORFUL_COLORS);
+                        dataSet.setValueTextColor(Color.WHITE);
+                        dataSet.setValueTextSize(10f);
+                        PieData data=new PieData(dataSet);
+                        pieChart.setCenterText("Total Cases");
+                        pieChart.setCenterTextColor(Color.BLACK);
+                        pieChart.setData(data);
+                        progressBar.setVisibility(View.GONE);
                     }
                 },
                 new Response.ErrorListener(){
@@ -109,8 +140,6 @@ public class Home extends Fragment {
                     }
                 }
         );
-
-
         requestQueue.add(jsonObjectRequest);
     }
 

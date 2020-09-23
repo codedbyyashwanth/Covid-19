@@ -29,19 +29,19 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class Contact extends Fragment {
 
     View view;
     RecyclerView recyclerView;
-    ContactAdapter adapter;
+    ContactAdapter adapter,adapter2;
     RecyclerView.LayoutManager layoutManager;
     ProgressBar progressBar;
     Context context;
-    ArrayList<ContactInformation> arrayList;
+    ArrayList<ContactInformation> arrayList,arrayList2;
     String url="https://api.rootnet.in/covid19-in/contacts",location,number;
     ImageView info;
+    SearchView searchView;
 
     @Nullable
     @Override
@@ -49,11 +49,69 @@ public class Contact extends Fragment {
         view = inflater.inflate(R.layout.contacts,container,false);
         context = view.getContext();
         arrayList=new ArrayList<>();
+        arrayList2=new ArrayList<>();
+        recyclerView = view.findViewById(R.id.recyclerView);
+        recyclerView.setHasFixedSize(true);
+        searchView=view.findViewById(R.id.searchView);
         progressBar=view.findViewById(R.id.progressBar);
         progressBar.setVisibility(View.VISIBLE);
+        searchView.setVisibility(View.GONE);
+        recyclerView.setVisibility(View.GONE);
         Data();
         clickListener();
+        searchMethod();
         return view;
+    }
+
+    private void searchMethod() {
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                changeAdapter(newText);
+                return true;
+            }
+
+        });
+        searchView.setOnCloseListener(new SearchView.OnCloseListener() {
+            @Override
+            public boolean onClose() {
+                recyclerView.setAdapter(adapter);
+                return true;
+            }
+        });
+
+    }
+
+    private void changeAdapter(String newText) {
+        boolean condition=false;
+        arrayList2.clear();
+        if(newText.isEmpty()) {
+            recyclerView.setAdapter(adapter);
+            condition=true;
+        }
+        else {
+            for (int i = 0; i < arrayList.size(); i++) {
+                ContactInformation info = arrayList.get(i);
+                if (info.getState().toLowerCase().contains(newText.trim().toLowerCase())) {
+                    arrayList2.add(new ContactInformation(info.getState(), info.getNumber()));
+                    adapter2 = new ContactAdapter(arrayList2, context);
+                    recyclerView.setAdapter(adapter2);
+                    condition = true;
+                }
+            }
+        }
+
+        if(!condition) {
+            Toast.makeText(context, "No Result", Toast.LENGTH_SHORT).show();
+            arrayList2.clear();
+            adapter2=new ContactAdapter(arrayList2,context);
+            recyclerView.setAdapter(adapter2);
+        }
     }
 
     private void clickListener() {
@@ -95,9 +153,9 @@ public class Contact extends Fragment {
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
-
-                        recyclerView = view.findViewById(R.id.recyclerView);
-                        recyclerView.setHasFixedSize(true);
+                        progressBar.setVisibility(View.GONE);
+                        recyclerView.setVisibility(View.VISIBLE);
+                        searchView.setVisibility(View.VISIBLE);
                         adapter=new ContactAdapter(arrayList,context);
                         layoutManager=new LinearLayoutManager(view.getContext());
                         recyclerView.setLayoutManager(layoutManager);
@@ -112,8 +170,6 @@ public class Contact extends Fragment {
                 }
         );
         requestQueue.add(jsonObjectRequest);
-
-        progressBar.setVisibility(View.GONE);
     }
 
 }

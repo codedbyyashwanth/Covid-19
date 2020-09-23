@@ -93,10 +93,10 @@ public class Colleges extends AppCompatActivity {
                                 arrayList.add(new CollegesInfo(State,College,City,OwnerShip,Admission,Beds));
                             }
 
-                            arrayAdapter1 = new ArrayAdapter<String>(context,android.R.layout.simple_spinner_item, state);
+                            arrayAdapter1 = new ArrayAdapter<>(context,android.R.layout.simple_spinner_item, state);
                             arrayAdapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                             spinner1.setAdapter(arrayAdapter1);
-                            arrayAdapter2 = new ArrayAdapter<String>(context,android.R.layout.simple_spinner_item,ownership);
+                            arrayAdapter2 = new ArrayAdapter<>(context,android.R.layout.simple_spinner_item,ownership);
                             arrayAdapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                             spinner2.setAdapter(arrayAdapter2);
 

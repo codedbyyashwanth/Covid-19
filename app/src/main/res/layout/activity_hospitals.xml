@@ -26,10 +26,19 @@
         android:layout_toEndOf="@id/back"
         />
 
+    <SearchView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/searchView1"
+        android:layout_below="@id/head"
+        android:layout_marginTop="5dp"
+        android:queryHint="Search State"
+        android:iconifiedByDefault="false"/>
+
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:id="@+id/recyclerView"
-        android:layout_below="@id/head"
+        android:layout_below="@id/searchView1"
         android:layout_marginTop="10dp"
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"
@@ -37,5 +46,12 @@
         android:layout_height="match_parent">
 
     </androidx.recyclerview.widget.RecyclerView>
+
+    <ProgressBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:id="@+id/progressBar"/>
 
 </RelativeLayout>

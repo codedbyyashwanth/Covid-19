@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -33,12 +34,18 @@ public class Notification extends Fragment {
     RecyclerView recyclerView;
     NotificationAdapter adapter;
     RecyclerView.LayoutManager layoutManager;
+    ProgressBar progressBar;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.notification, container, false);
         arrayList=new ArrayList<>();
+        progressBar=view.findViewById(R.id.progressBar);
+        recyclerView=view.findViewById(R.id.recyclerView);
+        recyclerView.setHasFixedSize(true);
+        progressBar.setVisibility(View.VISIBLE);
+        recyclerView.setVisibility(View.GONE);
         Data();
         return view;
     }
@@ -62,9 +69,11 @@ public class Notification extends Fragment {
                                 title=object.getString("title");
                                 link=object.getString("link");
                                 date=title.substring(0,11);
-                                title=title.substring(11);
                                 if(!date.contains("2020")) {
                                     date="No Date";
+                                }
+                                else{
+                                    title=title.substring(11);
                                 }
                                 arrayList.add(new NotificationInfo(title, link, date));
                             }
@@ -72,8 +81,8 @@ public class Notification extends Fragment {
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
-                        recyclerView=view.findViewById(R.id.recyclerView);
-                        recyclerView.setHasFixedSize(true);
+                        progressBar.setVisibility(View.GONE);
+                        recyclerView.setVisibility(View.VISIBLE);
                         adapter=new NotificationAdapter(arrayList,view.getContext());
                         layoutManager=new LinearLayoutManager(view.getContext());
                         recyclerView.setLayoutManager(layoutManager);

@@ -3,7 +3,6 @@
     package="com.roborosx.covid19">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.CALL_PHONE" />
 
     <application
         android:allowBackup="true"
@@ -12,17 +11,24 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Colleges"></activity>
+        <activity android:name=".Stats"
+            android:screenOrientation="portrait"
+            >
+
+        </activity>
+        <activity android:name=".Colleges"
+            android:screenOrientation="portrait"
+            />
         <activity
             android:name=".Hospitals"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".MoreInfo"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".NavigationActivity"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustPan"></activity>
+            android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".MainActivity"
             android:screenOrientation="portrait">
